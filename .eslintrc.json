@@ -1,0 +1,10 @@
+{
+  "extends": ["prettier", "react-app", "react-app/jest"],
+  "plugins": ["react", "react-hooks", "react-security", "testing-library"],
+  "rules": {
+    "react-security/no-javascript-urls": "warn",
+    "react-security/no-dangerously-set-innerhtml": "warn",
+    "react-security/no-find-dom-node": "warn",
+    "react-security/no-refs": "warn"
+  }
+}
