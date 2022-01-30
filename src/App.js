@@ -13,7 +13,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">Header</header>
+      <header className="header">
+        <h1>Countries</h1>
+      </header>
 
       <div>
         <button

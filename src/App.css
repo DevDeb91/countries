@@ -1,0 +1,38 @@
+h1 {
+  color: var(--color-violet);
+  font-family: primot, Georgia;
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 56px;
+  margin: 0;
+}
+
+.header {
+  background: transparent var(--gradient-light-blue) 0% 0% no-repeat padding-box;
+  padding: 40px 0;
+  min-height: 190px;
+  text-align: center;
+}
+
+/*************************************************************************************
+*********************             MEDIA QUERIES               ************************
+**************************************************************************************/
+
+/* TABLET */
+@media only screen and (min-width: 481px) {
+  h1 {
+    font-size: 60px;
+    line-height: 66px;
+  }
+
+  .header {
+    min-height: 220px;
+  }
+}
+
+/* DESKTOP */
+@media only screen and (min-width: 1025px) {
+  .header {
+    min-height: 165px;
+  }
+}
