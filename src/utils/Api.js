@@ -8,4 +8,10 @@ export default class Api {
       .get(`/name/${name}`)
       .then((response) => response.data)
       .catch((error) => error)
+
+  static getAllCountries = () =>
+    restCountries
+      .get('/all')
+      .then((response) => response.data)
+      .catch((error) => error)
 }

@@ -1,39 +1,36 @@
-import { useState } from 'react'
-import './App.css'
+import { useEffect, useState } from 'react'
+import Selector from './components/Selector/Selector'
 import Api from './utils/Api'
+import './App.css'
 
 function App() {
+  const [allCountries, setAllCountries] = useState([])
   const [selectedCountries, setSelectedCountries] = useState([])
 
-  const addCountryByName = async (name) => {
-    const country = await Api.getCountryByName(name)
+  useEffect(async () => {
+    setAllCountries(await Api.getAllCountries())
+  }, [])
 
-    setSelectedCountries((prevState) => [...prevState, ...country])
+  const handleSelectorChanges = async (names) => {
+    const countries = allCountries.filter(({ name }) => names.includes(name.common))
+
+    setSelectedCountries(countries)
   }
 
   return (
     <div className="App">
       <header className="header">
         <h1>Countries</h1>
+
+        <div className="selector">
+          <Selector
+            options={allCountries.map(({ name }) => ({ label: name.common, value: name.common }))}
+            onValueChange={(names) => handleSelectorChanges(names)}
+          />
+        </div>
       </header>
 
       <div>
-        <button
-          onClick={() => {
-            addCountryByName('peru')
-          }}
-        >
-          Add Peru
-        </button>
-
-        <button
-          onClick={() => {
-            addCountryByName('Norfolk Island')
-          }}
-        >
-          Add Norfolk Island
-        </button>
-
         {selectedCountries.map((country, index) => (
           <div key={`country_${index}`}>
             {Object.keys(country).map((key) => `${key}: ${country[key]}; `)}
