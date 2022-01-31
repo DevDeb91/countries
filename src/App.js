@@ -60,10 +60,14 @@ function App() {
           />
         </div>
 
-        <div className="cards">
+        <div className="countries__cards">
           {selectedCountries.map((country, index) => (
             <Card country={country} key={`country_${index}`} onRemove={handleRemoveCard} />
           ))}
+
+          <div className="fade-top desktop-only"></div>
+
+          <div className="fade-bottom desktop-only"></div>
         </div>
       </div>
     </div>
