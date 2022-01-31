@@ -19,6 +19,10 @@ h2 {
   padding: 0;
 }
 
+.desktop-only {
+  display: none;
+}
+
 .header {
   align-items: center;
   background: transparent var(--gradient-light-blue) 0% 0% no-repeat padding-box;
@@ -73,6 +77,28 @@ h2 {
 
 /* DESKTOP */
 @media only screen and (min-width: 1025px) {
+  .cards {
+    width: 35%;
+  }
+
+  .countries {
+    display: flex;
+  }
+
+  .countries__map {
+    margin-left: 20px;
+    width: 65%;
+  }
+
+  .countries__map > svg {
+    border: 2px solid var(--color-light-blue);
+    border-radius: 5px;
+  }
+
+  .desktop-only {
+    display: block;
+  }
+
   .header {
     min-height: 165px;
   }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Card from './components/Card/Card'
+import Map from './components/Map/Map'
 import Selector from './components/Selector/Selector'
 import Api from './utils/Api'
 import './App.css'
@@ -14,15 +15,25 @@ function App() {
 
   const convertCountryNameToOption = (countryName) => ({ label: countryName, value: countryName })
 
-  const handleSelectorChanges = async (names) => {
-    const countries = allCountries.filter(({ name }) => names.includes(name.common))
+  const addCountryByCode = (countryCode) => {
+    const country = allCountries.find((country) => country.cca3 === countryCode)
 
-    setSelectedCountries(countries)
+    setSelectedCountries((prevCountries) => [...prevCountries, country])
   }
 
+  const handleSelectorChanges = (names) => {
+    const countries = allCountries.filter(({ name }) => names.includes(name.common))
+    setSelectedCountries(countries)
+  }
   const handleRemoveCard = (countryName) => {
     setSelectedCountries((prevCountries) =>
       prevCountries.filter((country) => country.name.common !== countryName),
+    )
+  }
+
+  const removeCountryByCode = (countryCode) => {
+    setSelectedCountries((prevCountries) =>
+      prevCountries.filter((country) => country.cca3 !== countryCode),
     )
   }
 
@@ -40,10 +51,20 @@ function App() {
         </div>
       </header>
 
-      <div className="cards">
-        {selectedCountries.map((country, index) => (
-          <Card country={country} key={`country_${index}`} onRemove={handleRemoveCard} />
-        ))}
+      <div className="countries">
+        <div className="countries__map desktop-only">
+          <Map
+            onCountrySelection={addCountryByCode}
+            onCountryDeselection={removeCountryByCode}
+            selectedCountries={selectedCountries.map(({ cca3 }) => cca3)}
+          />
+        </div>
+
+        <div className="cards">
+          {selectedCountries.map((country, index) => (
+            <Card country={country} key={`country_${index}`} onRemove={handleRemoveCard} />
+          ))}
+        </div>
       </div>
     </div>
   )
