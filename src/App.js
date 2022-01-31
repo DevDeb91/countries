@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Card from './components/Card/Card'
 import Selector from './components/Selector/Selector'
 import Api from './utils/Api'
 import './App.css'
@@ -11,10 +12,18 @@ function App() {
     setAllCountries(await Api.getAllCountries())
   }, [])
 
+  const convertCountryNameToOption = (countryName) => ({ label: countryName, value: countryName })
+
   const handleSelectorChanges = async (names) => {
     const countries = allCountries.filter(({ name }) => names.includes(name.common))
 
     setSelectedCountries(countries)
+  }
+
+  const handleRemoveCard = (countryName) => {
+    setSelectedCountries((prevCountries) =>
+      prevCountries.filter((country) => country.name.common !== countryName),
+    )
   }
 
   return (
@@ -24,17 +33,16 @@ function App() {
 
         <div className="selector">
           <Selector
-            options={allCountries.map(({ name }) => ({ label: name.common, value: name.common }))}
+            value={selectedCountries.map(({ name }) => convertCountryNameToOption(name.common))}
+            options={allCountries.map(({ name }) => convertCountryNameToOption(name.common))}
             onValueChange={(names) => handleSelectorChanges(names)}
           />
         </div>
       </header>
 
-      <div>
+      <div className="cards">
         {selectedCountries.map((country, index) => (
-          <div key={`country_${index}`}>
-            {Object.keys(country).map((key) => `${key}: ${country[key]}; `)}
-          </div>
+          <Card country={country} key={`country_${index}`} onRemove={handleRemoveCard} />
         ))}
       </div>
     </div>
