@@ -18,14 +18,19 @@ function App() {
   const addCountryByCode = (countryCode) => {
     const country = allCountries.find((country) => country.cca3 === countryCode)
 
-    setSelectedCountries((prevCountries) => [...prevCountries, country])
+    if (country) {
+      setSelectedCountries((prevCountries) => [...prevCountries, country])
+    }
   }
 
   const handleSelectorChanges = (names) => {
-    const countries = allCountries.filter(({ name }) => names.includes(name.common))
+    const countries = names.map((name) =>
+      allCountries.find((country) => name === country.name.common),
+    )
+
     setSelectedCountries(countries)
   }
-  const handleRemoveCard = (countryName) => {
+  const removeCountryByName = (countryName) => {
     setSelectedCountries((prevCountries) =>
       prevCountries.filter((country) => country.name.common !== countryName),
     )
@@ -62,7 +67,7 @@ function App() {
 
         <div className="countries__cards">
           {selectedCountries.map((country, index) => (
-            <Card country={country} key={`country_${index}`} onRemove={handleRemoveCard} />
+            <Card country={country} key={`country_${index}`} onRemove={removeCountryByName} />
           ))}
 
           <div className="fade-top desktop-only"></div>
