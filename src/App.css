@@ -12,6 +12,11 @@ h2 {
   margin: 0 0 10px 0;
 }
 
+p {
+  color: var(--color-neutral);
+  font-size: 14px;
+}
+
 .countries__cards {
   align-items: center;
   display: flex;
@@ -68,6 +73,10 @@ h2 {
   h1 {
     font-size: 60px;
     line-height: 66px;
+  }
+
+  p {
+    font-size: 20px;
   }
 
   .countries__cards {

@@ -74,6 +74,8 @@ function App() {
             <Card country={country} key={`country_${index}`} onRemove={removeCountryByName} />
           ))}
 
+          {selectedCountries.length === 0 && <p>Select one or more countries to get information</p>}
+
           <div className="fade-top desktop-only"></div>
 
           <div className="fade-bottom desktop-only"></div>
