@@ -33,7 +33,6 @@ function Card({ country, onRemove }) {
         onClick={() => {
           onRemove(countryName)
         }}
-        role="button"
       >
         <FontAwesomeIcon icon={faTimes} />
       </button>
@@ -55,7 +54,7 @@ function Card({ country, onRemove }) {
         </div>
 
         <div className="card__info__flag mobile-hidden">
-          <img src={country.flags.svg} />
+          <img alt="country flag" src={country.flags.svg} />
         </div>
       </div>
     </div>

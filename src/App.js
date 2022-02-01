@@ -9,8 +9,12 @@ function App() {
   const [allCountries, setAllCountries] = useState([])
   const [selectedCountries, setSelectedCountries] = useState([])
 
-  useEffect(async () => {
-    setAllCountries(await Api.getAllCountries())
+  useEffect(() => {
+    async function fetchData() {
+      setAllCountries(await Api.getAllCountries())
+    }
+
+    fetchData()
   }, [])
 
   const convertCountryNameToOption = (countryName) => ({ label: countryName, value: countryName })

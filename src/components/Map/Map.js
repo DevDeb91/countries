@@ -61,7 +61,7 @@ const Map = ({ selectedCountries, onCountryDeselection, onCountrySelection }) =>
 }
 
 Map.propTypes = {
-  selectedCountries: PropTypes.arrayOf(PropTypes.object),
+  selectedCountries: PropTypes.arrayOf(PropTypes.string),
   onCountryDeselection: PropTypes.func.isRequired,
   onCountrySelection: PropTypes.func.isRequired,
 }
