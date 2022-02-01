@@ -11,7 +11,7 @@ const NoOptionsMessage = (props) => {
   )
 }
 
-function Selector({ onValueChange, options, selections, value }) {
+function Selector({ isLoading, onValueChange, options, value }) {
   const handleChange = (newSelections) => {
     const newValues = newSelections.map(({ value }) => value)
 
@@ -20,8 +20,8 @@ function Selector({ onValueChange, options, selections, value }) {
 
   return (
     <Select
-      components={{ NoOptionsMessage }}
-      defaultValue={selections}
+      components={{ NoOptionsMessage: isLoading ? NoOptionsMessage : components.NoOptionsMessage }}
+      defaultValue={[]}
       isMulti
       onChange={(newSelections) => handleChange(newSelections)}
       options={options}
@@ -32,16 +32,16 @@ function Selector({ onValueChange, options, selections, value }) {
 }
 
 Selector.propTypes = {
+  isLoading: PropTypes.bool,
   onValueChange: PropTypes.func,
   options: PropTypes.arrayOf(PropTypes.exact({ label: PropTypes.string, value: PropTypes.any })),
-  selections: PropTypes.array,
   value: PropTypes.arrayOf(PropTypes.exact({ label: PropTypes.string, value: PropTypes.any })),
 }
 
 Selector.defaultProps = {
+  isLoading: false,
   onValueChange: null,
   options: [],
-  selections: [],
   value: [],
 }
 

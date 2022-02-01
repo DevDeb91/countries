@@ -7,11 +7,13 @@ import './App.css'
 
 function App() {
   const [allCountries, setAllCountries] = useState([])
+  const [areCountriesLoaded, setAreCountriesLoaded] = useState(false)
   const [selectedCountries, setSelectedCountries] = useState([])
 
   useEffect(() => {
     async function fetchData() {
       setAllCountries(await Api.getAllCountries())
+      setAreCountriesLoaded(true)
     }
 
     fetchData()
@@ -53,9 +55,10 @@ function App() {
 
         <div className="selector">
           <Selector
-            value={selectedCountries.map(({ name }) => convertCountryNameToOption(name.common))}
+            isLoading={!areCountriesLoaded}
             options={allCountries.map(({ name }) => convertCountryNameToOption(name.common))}
             onValueChange={(names) => handleSelectorChanges(names)}
+            value={selectedCountries.map(({ name }) => convertCountryNameToOption(name.common))}
           />
         </div>
       </header>
