@@ -8,16 +8,21 @@ function Card({ country, onRemove }) {
 
   const countryInfo = [
     { label: 'Continent', value: country.continents.join(', ') },
-    { label: 'Capital', value: country.capital[0] },
+    { label: 'Capital', value: country.capital ? country.capital[0] : 'None' },
     { label: 'Region', value: country.region },
     { label: 'Area', value: `${country.area} km²` },
-    { label: 'Population', value: `${country.area} km²` },
-    { label: 'Languages', value: Object.values(country.languages).join(', ') },
+    { label: 'Population', value: country.population || '0' },
+    {
+      label: 'Languages',
+      value: country.languages ? Object.values(country.languages).join(', ') : 'None',
+    },
     {
       label: 'Currency',
-      value: Object.values(country.currencies)
-        .map(({ name, symbol }) => `${name} (${symbol})`)
-        .join(', '),
+      value: country.currencies
+        ? Object.values(country.currencies)
+            .map(({ name, symbol }) => `${name} (${symbol})`)
+            .join(', ')
+        : 'None',
     },
   ]
 
