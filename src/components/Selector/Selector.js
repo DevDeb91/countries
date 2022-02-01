@@ -1,6 +1,15 @@
 import PropTypes from 'prop-types'
-import Select from 'react-select'
+import Select, { components } from 'react-select'
 import styles from './styles'
+import Spinner from '../Spinner'
+
+const NoOptionsMessage = (props) => {
+  return (
+    <components.NoOptionsMessage {...props}>
+      <Spinner />
+    </components.NoOptionsMessage>
+  )
+}
 
 function Selector({ onValueChange, options, selections, value }) {
   const handleChange = (newSelections) => {
@@ -11,6 +20,7 @@ function Selector({ onValueChange, options, selections, value }) {
 
   return (
     <Select
+      components={{ NoOptionsMessage }}
       defaultValue={selections}
       isMulti
       onChange={(newSelections) => handleChange(newSelections)}

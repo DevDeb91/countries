@@ -27,6 +27,11 @@ const styles = {
     backgroundColor: COLORS.lightBlue,
   }),
 
+  noOptionsMessage: (base) => ({
+    ...base,
+    color: COLORS.neutralLight,
+  }),
+
   option: (base, { isFocused }) => ({
     ...base,
     backgroundColor: isFocused ? COLORS.lightBlue : null,
