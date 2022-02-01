@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { memo, useState } from 'react'
 import ReactTooltip from 'react-tooltip'
 import { ZoomableGroup, ComposableMap, Geographies, Geography } from 'react-simple-maps'
@@ -57,6 +58,16 @@ const Map = ({ selectedCountries, onCountryDeselection, onCountrySelection }) =>
       <ReactTooltip>{tooltipContent}</ReactTooltip>
     </>
   )
+}
+
+Map.propTypes = {
+  selectedCountries: PropTypes.arrayOf(PropTypes.object),
+  onCountryDeselection: PropTypes.func.isRequired,
+  onCountrySelection: PropTypes.func.isRequired,
+}
+
+Map.defaultProps = {
+  selectedCountries: [],
 }
 
 export default memo(Map)

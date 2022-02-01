@@ -63,7 +63,12 @@ function Card({ country, onRemove }) {
 }
 
 Card.propTypes = {
-  country: PropTypes.object.isRequired,
+  country: PropTypes.shape({
+    area: PropTypes.number,
+    continents: PropTypes.arrayOf(PropTypes.string),
+    popupation: PropTypes.number,
+    region: PropTypes.string,
+  }).isRequired,
   onRemove: PropTypes.func.isRequired,
 }
 
