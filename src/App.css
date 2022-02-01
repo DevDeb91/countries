@@ -15,6 +15,7 @@ h2 {
 p {
   color: var(--color-neutral);
   font-size: 14px;
+  text-align: center;
 }
 
 .countries__cards {
@@ -77,6 +78,7 @@ p {
 
   p {
     font-size: 20px;
+    line-height: 30px;
   }
 
   .countries__cards {
@@ -111,12 +113,12 @@ p {
     max-height: calc(100vh - 290px);
     overflow-y: scroll;
     padding-top: 20px;
-    width: 50%;
+    width: 40%;
   }
 
   .countries__map {
     margin-left: 20px;
-    width: 50%;
+    width: 60%;
   }
 
   .countries__map .countries__map > svg {

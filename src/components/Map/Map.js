@@ -48,6 +48,7 @@ const Map = ({ selectedCountries, onCountryDeselection, onCountrySelection }) =>
                         outline: 'none',
                       },
                     }}
+                    stroke={COLORS.white}
                   />
                 )
               })
