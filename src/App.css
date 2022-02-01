@@ -37,11 +37,11 @@ p {
   width: 50%;
 }
 
-.fade-bottom {
+.fade-top {
   top: 3px;
 }
 
-.fade-top {
+.fade-bottom {
   bottom: 0;
 }
 
